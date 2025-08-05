@@ -11,7 +11,7 @@ class RegistrationsController < ApplicationController
     if @user.save
       UserMailer.with(user: @user).welcome_email.deliver_later
       start_new_session_for @user
-      redirect_to after_authentication_url, notice: "Welcome, #{@user.email_address}!"
+      redirect_to after_authentication_url, notice: "Welcome, #{@user.email_address}!", status: :see_other
     else
       render :new, status: :unprocessable_entity
     end
