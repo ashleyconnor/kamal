@@ -1,0 +1,28 @@
+#chat
+  .bg-gray-50.flex.flex-col.max-w-4xl.bg-white
+    / Chat Header
+    .bg-blue-600.text-white.p-4.flex.justify-between.items-center.shadow-lg
+      h1.text-xl.font-semibold Chat Room
+      = tag.span id: "current-user-id", class: "hidden", data: { user_id: "#{current_user.id}" }
+      .relative.cursor-pointer.group data-controller="dropdown"
+        .flex.items-center.space-x-2.text-sm
+          .w-2.h-2.bg-green-400.rounded-full
+          span#online-count 0 users online
+        / Online users dropdown
+        .absolute.top-full.right-0.mt-1.bg-white.border.border-gray-200.rounded-lg.shadow-xl.min-w-48.max-h-72.overflow-y-auto.z-50.hidden.group-hover:block
+          #online-users-list.text-gray-800
+            / Users populated by JavaScript
+
+    / Messages Container
+    .flex-1.overflow-y-auto.p-4.space-y-2#messages
+      / Messages populated by JavaScript
+
+    / Typing Indicators
+    #typing-indicators
+      / Typing indicators populated by JavaScript
+
+    / Message Input
+    .border-t.border-gray-200.p-4
+      .flex.space-x-3
+        input#message-input.flex-1.border.border-gray-300.rounded-lg.px-4.py-3.text-sm.focus:outline-none.focus:ring-2.focus:ring-blue-500.focus:border-transparent placeholder="Type your message..." autocomplete="off"
+        button#send-button.bg-blue-600.text-white.px-6.py-3.rounded-lg.font-medium.hover:bg-blue-700.disabled:bg-gray-400.disabled:cursor-not-allowed.transition-colors Send

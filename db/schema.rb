@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_04_182255) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_11_144843) do
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
@@ -18,6 +18,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_04_182255) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
+  create_table "solid_cable_messages", force: :cascade do |t|
+    t.binary "channel", null: false
+    t.binary "payload", null: false
+    t.datetime "created_at", null: false
+    t.bigint "channel_hash", null: false
+    t.index ["channel", "created_at"], name: "index_solid_cable_messages_on_channel_and_created_at"
+    t.index ["channel_hash"], name: "index_solid_cable_messages_on_channel_hash"
   end
 
   create_table "users", force: :cascade do |t|

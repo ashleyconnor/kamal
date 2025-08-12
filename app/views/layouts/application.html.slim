@@ -25,6 +25,8 @@ html
             = link_to "Home", root_path
           - if authenticated?
             li
+              = link_to "Chat", chat_path
+            li
               = link_to "Profile", profile_path
             li
               = form_with url: logout_path, method: :delete do
